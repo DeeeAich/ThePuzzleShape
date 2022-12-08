@@ -9,7 +9,7 @@ public class LineConnection : MonoBehaviour
 
     public GameObject lineBase;
     public float lineRange;
-    private List<GameObject> gears = new List<GameObject>();
+    public List<GameObject> gears = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +17,19 @@ public class LineConnection : MonoBehaviour
 
         lineControl = GetComponent<LineRenderer>();
 
-        lineControl.SetPosition(0, transform.position);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        lineControl.SetPosition(0, transform.position);
+
+        foreach (GameObject gear in gears)
+            lineControl.SetPosition(gears.IndexOf(gear) + 1, gear.transform.position + new Vector3(0, 0, lineRange));
+
+        if(gameObject)
 
         lineControl.SetPosition(lineControl.positionCount - 1, lineBase.transform.position);
 

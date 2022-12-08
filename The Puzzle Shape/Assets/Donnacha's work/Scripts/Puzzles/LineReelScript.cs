@@ -36,7 +36,7 @@ public class LineReelScript : MonoBehaviour
         if (other.gameObject.name == "Gear")
             lineControl.AddLinePoint(other.gameObject);
 
-        if (other.gameObject.name == "EndPoint")
+        if (other.gameObject.name == "EndPoint" && lineControl.gears.Count == 3)
             SetNewEndPoint(other.gameObject);
 
 
@@ -50,15 +50,14 @@ public class LineReelScript : MonoBehaviour
         if (finalPoint)
         {
 
+            lineControl.lineControl.SetPosition(lineControl.lineControl.positionCount - 2, transform.parent.position);
             float speed = GetComponent<Rigidbody>().velocity.magnitude;
             float distance = Vector3.Distance(transform.position, lastPos.position);
-
-            Debug.Log(speed + "    " + distance);
+            
             if (/*speed > minimumSpeed &&*/ distance > minimumDistance)
             {
                 GetComponent<XRGrabInteractable>().enabled = false;
                 Release();
-                finalPoint = false;
                 //finished
             }
         }
