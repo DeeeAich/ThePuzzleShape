@@ -10,6 +10,7 @@ public class Lever : MonoBehaviour
     [SerializeField] private float secondLeverDir;
 
     private Rigidbody rb;
+    private HingeJoint hinge;
 
     private float upRotation = 70;
     private float downRotation = -70;
@@ -24,6 +25,7 @@ public class Lever : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        hinge = GetComponent<HingeJoint>();
 
         previous = transform.localRotation;
     }
@@ -81,19 +83,35 @@ public class Lever : MonoBehaviour
 
         if (transform.localRotation.x * 126 > 35)
         {
-            transform.localRotation = Quaternion.Euler(upRotation, 0, 0);
+            //transform.localRotation = Quaternion.Euler(upRotation, 0, 0);
+            JointSpring newSpring = hinge.spring;
+            newSpring.targetPosition = upRotation;
+
+            hinge.spring = newSpring;
+            
             Debug.Log(upRotation);
             return;
         }
         else if (transform.localRotation.x * 126 < -35)
         {
-            transform.localRotation = Quaternion.Euler(downRotation, 0, 0);
+            //transform.localRotation = Quaternion.Euler(downRotation, 0, 0);
+            JointSpring newSpring = hinge.spring;
+            newSpring.targetPosition = downRotation;
+
+            hinge.spring = newSpring;
+
             Debug.Log(downRotation);
             return;
         }
         else if (transform.localRotation.x * 126 >= -35 && transform.localRotation.x * 126 <= 35)
         {
-            transform.localRotation = Quaternion.Euler(midRotation, 0, 0);
+            //transform.localRotation = Quaternion.Euler(midRotation, 0, 0);
+
+            JointSpring newSpring = hinge.spring;
+            newSpring.targetPosition = midRotation;
+
+            hinge.spring = newSpring;
+
             Debug.Log(midRotation);
             return;
         }

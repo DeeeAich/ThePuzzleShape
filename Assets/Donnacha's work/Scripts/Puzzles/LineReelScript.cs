@@ -50,11 +50,11 @@ public class LineReelScript : MonoBehaviour
         if (finalPoint)
         {
 
-            lineControl.lineControl.SetPosition(lineControl.lineControl.positionCount - 2, transform.parent.position);
-            float speed = GetComponent<Rigidbody>().velocity.magnitude;
+            lineControl.lineControl.SetPosition(lineControl.lineControl.positionCount - 2, lastPos.position);
+
             float distance = Vector3.Distance(transform.position, lastPos.position);
             
-            if (/*speed > minimumSpeed &&*/ distance > minimumDistance)
+            if (distance > minimumDistance)
             {
                 GetComponent<XRGrabInteractable>().enabled = false;
                 Release();
@@ -67,6 +67,7 @@ public class LineReelScript : MonoBehaviour
     {
         if (finalPoint)
             return;
+
         finalPoint = true;
         lastPos = endPoint.transform; 
         lineControl.lineControl.SetPosition(lineControl.lineControl.positionCount - 1, endPoint.transform.position);
