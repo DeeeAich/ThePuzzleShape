@@ -10,6 +10,7 @@ public class LineConnection : MonoBehaviour
     public GameObject lineBase;
     public float lineRange;
     public List<GameObject> gears = new List<GameObject>();
+    public GameObject puzzleComplete;
 
     // Start is called before the first frame update
     void Start()
@@ -63,5 +64,13 @@ public class LineConnection : MonoBehaviour
         lineControl.positionCount += 1;
         gears.Add(newGear);
         
+    }
+
+    public void PuzzleCompleted()
+    {
+        foreach (GameObject gear in gears)
+            gear.GetComponent<GearSpinning>().rotate = true;
+
+        puzzleComplete.GetComponent<GearSpinning>().rotate = true;
     }
 }

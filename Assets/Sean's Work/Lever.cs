@@ -79,7 +79,7 @@ public class Lever : MonoBehaviour
     public void SNAP()
     {
         rb.angularVelocity = Vector3.zero;
-        Debug.Log(transform.localRotation.x * 126);
+        //Debug.Log(transform.localRotation.x * 126);
 
         if (transform.localRotation.x * 126 > 35)
         {
@@ -89,7 +89,7 @@ public class Lever : MonoBehaviour
 
             hinge.spring = newSpring;
             
-            Debug.Log(upRotation);
+        //    Debug.Log(upRotation);
             return;
         }
         else if (transform.localRotation.x * 126 < -35)
@@ -100,7 +100,7 @@ public class Lever : MonoBehaviour
 
             hinge.spring = newSpring;
 
-            Debug.Log(downRotation);
+          //  Debug.Log(downRotation);
             return;
         }
         else if (transform.localRotation.x * 126 >= -35 && transform.localRotation.x * 126 <= 35)
@@ -112,13 +112,13 @@ public class Lever : MonoBehaviour
 
             hinge.spring = newSpring;
 
-            Debug.Log(midRotation);
+          //  Debug.Log(midRotation);
             return;
         }
         else
         {
             Debug.Log("Snap didn't work", this);
-            return;
+           // return;
         }
     }
 

@@ -54,10 +54,11 @@ public class LineReelScript : MonoBehaviour
 
             float distance = Vector3.Distance(transform.position, lastPos.position);
             
-            if (distance > minimumDistance)
+            if (distance > minimumDistance & held)
             {
                 GetComponent<XRGrabInteractable>().enabled = false;
                 Release();
+                lineControl.PuzzleCompleted();
                 //finished
             }
         }

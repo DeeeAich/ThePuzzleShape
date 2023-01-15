@@ -8,8 +8,8 @@ public class KeyTurning : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Quaternion.RotateTowards(keyGameobject.rotation, Quaternion.Euler( transform.rotation.x * Mathf.Rad2Deg - 90, 0, 0), Time.deltaTime * 10);
-        Debug.Log(transform.localRotation.x * 126);
+
+        keyGameobject.localRotation = Quaternion.Euler(transform.localRotation.x*Mathf.Rad2Deg - 90, keyGameobject.localRotation.y, keyGameobject.localRotation.z);
     }
 
     public void ResetPos()
