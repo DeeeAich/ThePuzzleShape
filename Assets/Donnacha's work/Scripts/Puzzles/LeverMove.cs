@@ -22,18 +22,17 @@ public class LeverMove : MonoBehaviour
     public void LetGoOf()
     {
         held = false;
+        int indexChange = NearestIndex() - myLever.currentIndex;
+
         myLever.currentIndex = NearestIndex();
         Quaternion quaternion = Quaternion.Euler(angles[myLever.currentIndex], 0, 0);
         myLever.SetLocalRotation(quaternion);
-        transform.position = transform.parent.position;
+        transform.SetPositionAndRotation(transform.parent.position, transform.parent.rotation);
 
         foreach(LeverClass lever in myMovers)
-            if (myLever.isPos) lever.ReflectiveMove(1);
-            else lever.ReflectiveMove (-1);
-
-
-
-
+            if (myLever.isPos) lever.ReflectiveMove(indexChange);
+            else lever.ReflectiveMove(-indexChange);
+        
     }
 
     private void Update()
