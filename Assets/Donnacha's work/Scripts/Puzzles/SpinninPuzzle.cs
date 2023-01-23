@@ -62,7 +62,7 @@ public class SpinninPuzzle : MonoBehaviour
             spinningImage.localRotation = parent.parent.localRotation;
 
         }
-        if (spinningImageFinalAngle - 9 < spinningImage.localEulerAngles.y && spinningImageFinalAngle + 9 > spinningImage.localEulerAngles.y)
+        if (completed)
             arrowDirection.GetComponent<MeshRenderer>().material = arrowColours[1];
         else
             arrowDirection.GetComponent<MeshRenderer>().material = arrowColours[0];

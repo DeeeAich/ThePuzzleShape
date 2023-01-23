@@ -10,6 +10,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Donnacha's working scene");
     }
 
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("How To Play");
+    }
+
     public void QuitButtonClick()
     {
         Application.Quit();

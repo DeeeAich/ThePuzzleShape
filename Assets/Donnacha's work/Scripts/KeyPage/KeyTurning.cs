@@ -25,6 +25,7 @@ public class KeyTurning : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(0);
+        if(allFinished)
+           SceneManager.LoadScene(0);
     }
 }

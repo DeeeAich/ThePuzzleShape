@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Donnacha's working scene.unity
     guid: f35c706b8a4dc204185110cb6a7cd0b0
+  - enabled: 1
+    path: Assets/Scenes/How To Play.unity
+    guid: 455caf5c07dd94a4d91eeae38ef10d2f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 46e915b61e919324891bc32aeaad0071, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1f79b50536c79484a8320febf0d5d354, type: 2}
