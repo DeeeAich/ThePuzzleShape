@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyTurning : MonoBehaviour
 {
     public Transform keyGameobject;
+    public bool allFinished;
     // Update is called once per frame
-    void FixedUpdate()
-    {
 
-        keyGameobject.localRotation = Quaternion.Euler(transform.localRotation.x*Mathf.Rad2Deg - 90, keyGameobject.localRotation.y, keyGameobject.localRotation.z);
+    private void Start()
+    {
+        PuzzleManager.PuzzleControl().gameFinished = this;
     }
 
-    public void ResetPos()
+    void FixedUpdate()
     {
-        transform.position = keyGameobject.position;
+        if (allFinished)
+        {
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation * Quaternion.Euler(90, 0, 0), Time.deltaTime * 60); ;
+            keyGameobject.localRotation = transform.localRotation;
+        }
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -6,17 +6,25 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class LineReelScript : MonoBehaviour
 {
     LineConnection lineControl;
-    bool held;
-    bool finalPoint;
+    public bool held;
+    public bool finalPoint;
     public float minimumSpeed = 5;
     public float minimumDistance = 1;
 
     Transform lastPos;
 
+    List<GameObject> points = new List<GameObject>();
+
     private void Start()
     {
         lineControl = transform.parent.GetComponent<LineConnection>();
     }
+
+    public void Hold()
+    {
+        held = true;
+    }
+
     public void Release()
     {
         
@@ -34,8 +42,9 @@ public class LineReelScript : MonoBehaviour
     {
 
         if (other.gameObject.name == "Gear")
+        {
             lineControl.AddLinePoint(other.gameObject);
-
+        }
         if (other.gameObject.name == "EndPoint" && lineControl.gears.Count == 3)
             SetNewEndPoint(other.gameObject);
 
@@ -45,20 +54,25 @@ public class LineReelScript : MonoBehaviour
     private void Update()
     {
         if (!held)
-            GetComponent<Rigidbody>().velocity = new Vector3();
-
-        if (finalPoint)
         {
-
+            transform.position = transform.parent.position;
+            transform.rotation = transform.parent.rotation;
+            GetComponent<Rigidbody>().velocity = new Vector3();
+        }
+        if (finalPoint && held)
+        {
             lineControl.lineControl.SetPosition(lineControl.lineControl.positionCount - 2, lastPos.position);
 
             float distance = Vector3.Distance(transform.position, lastPos.position);
-            
+
+            Debug.Log(distance);
+
             if (distance > minimumDistance & held)
             {
                 GetComponent<XRGrabInteractable>().enabled = false;
                 Release();
                 lineControl.PuzzleCompleted();
+                PuzzleManager.PuzzleControl().puzzleCompleted++;
                 //finished
             }
         }

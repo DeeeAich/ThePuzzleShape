@@ -11,6 +11,6 @@ public class GearSpinning : MonoBehaviour
     void Update()
     {
         if (rotate)
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation * Quaternion.Euler(60, 0, 0), Time.deltaTime * spinSpeed);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation * Quaternion.Euler(0, 90, 0), Time.deltaTime * spinSpeed);
     }
 }

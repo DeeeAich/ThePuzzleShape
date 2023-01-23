@@ -31,8 +31,7 @@ public class LineConnection : MonoBehaviour
             lineControl.SetPosition(gears.IndexOf(gear) + 1, gear.transform.position + new Vector3(0, 0, lineRange));
 
         if(gameObject)
-
-        lineControl.SetPosition(lineControl.positionCount - 1, lineBase.transform.position);
+            lineControl.SetPosition(lineControl.positionCount - 1, lineBase.transform.position);
 
     }
 
